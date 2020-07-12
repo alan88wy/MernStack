@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('header') -%>
+  <%- include('header') -%>
 
-<body class="container">
-  <div id="root"><%- content -%></div>
-  <script src="bundle.js"></script> // If put in public folder, then you do not need to specify path
-
-</body>
-<%- include('footer') -%>
-
+  <body class="container">
+    <div id="root"><%- content -%></div>
+    <!-- If put in public folder, then you do not need to specify path -->
+    <script src="bundle.js"></script>
+  </body>
+  <%- include('footer') -%>
 </html>
