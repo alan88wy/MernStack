@@ -1,9 +1,17 @@
 var webpack = require('webpack');
+var path = require('path');
+
+var BUILD_DIR = path.join(__dirname, 'public');
+var APP_DIR = path.join(__dirname, 'src');
+
+var VENDOR_LIBS = ['react', 'react-dom'];
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    bundle: APP_DIR + '/index.js',
+  },
   output: {
-    path: __dirname + '/public',
+    path: BUILD_DIR,
     filename: 'bundle.js',
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
@@ -22,6 +30,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader'],
       },
     ],
   },
