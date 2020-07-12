@@ -13,7 +13,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         resolve: {
-          extensions: ['*', '.js', '.jsx'],
+          extensions: ['*', '.webpack.js', '.web.js', '.ts', '.tsx', '.js', '.jsx'],
         },
         use: {
           loader: 'babel-loader',
