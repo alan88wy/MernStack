@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import './styles.css';
 
 const Header = ({ message }) => (
   <>
-    <h1>Hello World</h1>
-    <p>{message}</p>
-    <p>Ah ha</p>
+    <h1 className="header">{message}</h1>
   </>
 );
 
