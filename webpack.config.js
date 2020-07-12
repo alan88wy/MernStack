@@ -3,12 +3,8 @@ var webpack = require('webpack');
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: __dirname + '/dist',
+    path: __dirname + '/public',
     filename: 'bundle.js',
-  },
-  devServer: {
-    contentBase: './dist',
-    hot: true,
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
   module: {
