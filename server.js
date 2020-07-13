@@ -8,14 +8,21 @@ const server = express();
 server.set('view engine', 'ejs');
 server.use(helmet());
 
+import serverRender from './serverRender';
+
 server.get('/', (req, res) => {
-  res.render('index', {
-    content: '...',
-  });
+  serverRender()
+    .then((content) => {
+      res.render('index', {
+        content,
+      });
+    })
+    .catch(console.error);
 });
 
 server.use(express.static('public'));
 server.use('/api', apiRouter);
-server.listen(config.port, () => {
+
+server.listen(config.port, config.host, () => {
   console.info(`Server listening on port ${config.port}`);
 });
