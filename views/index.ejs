@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+  <script type="text/javascript">
+    window.initialData = <%- JSON.stringify(initialData) -%>
+  </script>
   <%- include('header') -%>
 
   <body class="container">
-    <div id="root"><%- content -%></div>
+    <div id="root"><%- initialMarkup -%></div>
     <!-- If put in public folder, then you do not need to specify path -->
     <script src="bundle.js"></script>
   </body>
