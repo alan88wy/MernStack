@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import styles from './styles';
+import '../styles.css';
 
 const Header = ({ message }) => (
   <>
-    <h1 style={styles.header}>{message}</h1>
+    <h1 className="header">{message}</h1>
   </>
 );
 

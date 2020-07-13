@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './header';
 import ContestPreview from './ContestPreview';
+import ContestList from './ContestList';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,11 +24,7 @@ class App extends React.Component {
     return (
       <div>
         <Header message={this.state.pageHeader} />
-        <div>
-          {this.state.contests.map((contest) => (
-            <ContestPreview key={contest.id} {...contest} />
-          ))}
-        </div>
+        <ContestList contests={this.state.contests} />
       </div>
     );
   }
