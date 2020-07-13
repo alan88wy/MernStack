@@ -1,6 +1,7 @@
 import express from 'express';
 import config from './config';
 import helmet from 'helmet';
+import apiRouter from './api';
 
 const server = express();
 
@@ -14,7 +15,7 @@ server.get('/', (req, res) => {
 });
 
 server.use(express.static('public'));
-
+server.use('/api', apiRouter);
 server.listen(config.port, () => {
   console.info(`Server listening on port ${config.port}`);
 });

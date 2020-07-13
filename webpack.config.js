@@ -14,7 +14,6 @@ module.exports = {
     path: BUILD_DIR,
     filename: 'bundle.js',
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
   module: {
     rules: [
       {

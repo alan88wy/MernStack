@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './header';
 import ContestPreview from './ContestPreview';
 import data from '../testData.json';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,8 +15,11 @@ class App extends React.Component {
 
   componentDidMount() {
     // timers, listeners
-    this.setState({
-      contests: data.contests,
+    axios.get('api/contests').then((res) => {
+      console.log(res.data.contests);
+      this.setState({
+        contests: res.data.contests,
+      });
     });
   }
 
