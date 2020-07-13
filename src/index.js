@@ -3,4 +3,4 @@ import ReactDOM from 'react-dom';
 
 import App from './components/App';
 
-ReactDOM.render(<App initialContests={[]} />, document.getElementById('root'));
+ReactDOM.hydrate(<App initialContests={[]} />, document.getElementById('root'));
