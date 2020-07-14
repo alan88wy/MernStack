@@ -1,14 +1,13 @@
 import express from 'express';
 import config from './config';
-import helmet from 'helmet';
+// import helmet from 'helmet';
 import apiRouter from './api';
+import serverRender from './serverRender';
 
 const server = express();
 
 server.set('view engine', 'ejs');
-server.use(helmet());
-
-import serverRender from './serverRender';
+// server.use(helmet());
 
 server.get('/', (req, res) => {
   serverRender()
@@ -21,8 +20,8 @@ server.get('/', (req, res) => {
     .catch(console.error);
 });
 
-server.use(express.static('public'));
 server.use('/api', apiRouter);
+server.use(express.static('public'));
 
 server.listen(config.port, config.host, () => {
   console.info(`Server listening on port ${config.port}`);

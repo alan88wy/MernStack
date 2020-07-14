@@ -1,10 +1,11 @@
 import React from 'react';
 import Header from './header';
-import ContestPreview from './ContestPreview';
 import ContestList from './ContestList';
+import Contest from './Contest';
+import * as api from '../api';
 
-const pustState = (obj, url) => {
-  window.history.pushState(obj, url);
+const pushState = (obj, url) => {
+  window.history.pushState(obj, '', url);
 };
 
 class App extends React.Component {
@@ -13,7 +14,11 @@ class App extends React.Component {
     this.state = {
       pageHeader: 'Naming Contests',
       contests: this.props.initialContests,
+      currentContestID: null,
     };
+
+    this.fetchContest = this.fetchContest.bind(this);
+    this.currentContest = this.currentContest.bind(this);
   }
 
   componentDidMount() {
@@ -24,15 +29,33 @@ class App extends React.Component {
     // clean timers, listeners
   }
 
-  fetchContest(contestID) {
-    pushState({ currentContestID: contestId }, '/contest/${contestId');
+  fetchContest(contestId) {
+    pushState({ currentContestID: contestId }, `/contest/${contestId}`);
+    api.fetchContest(contestId).then((contest) => {
+      this.setState({
+        pageHeader: contest.contestName,
+        currentContestID: contest.id,
+        contests: {
+          ...this.state.contests,
+          [contest.id]: contest,
+        },
+      });
+    });
+  }
+
+  currentContest() {
+    if (this.state.currentContestID) {
+      return <Contest {...this.state.contests[this.state.currentContestID]} />;
+    } else {
+      return <ContestList onContestClick={this.fetchContest} contests={this.state.contests} />;
+    }
   }
 
   render() {
     return (
       <div>
         <Header message={this.state.pageHeader} />
-        <ContestList onContestClick={this.fetchContest} contests={this.state.contests} />
+        {this.currentContest()}
       </div>
     );
   }
